@@ -6,14 +6,6 @@ import os
 from torchvision import transforms
 import glob
 import random
-from torch.utils.data import DataLoader
-from PIL import Image
-from torchvision.transforms import functional as FF
-import imageio.v2 as imageio
-import skimage.color as sc
-import torch.nn.functional as F
-import matplotlib.image as mpimg
-
 
 class RandomRotate(object):
     def __call__(self, data):

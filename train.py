@@ -43,7 +43,7 @@ os.environ['PYTHONHASHSEED'] = str(seed)
 # hyperparameters
 input_path = './dataset/NH-HAZE/train/haze'
 gt_path = './dataset/NH-HAZE/train/gt'
-model_name = 'baseline'  # 模型存檔名稱
+model_name = 'Baseline_Model'  # 模型存檔名稱
 check_point_path = '{}_{}'.format(model_name, 'weights')  # checkpoints 會存在這
 if not os.path.isdir(check_point_path):
     os.mkdir(check_point_path)
@@ -75,7 +75,7 @@ net = nn.parallel.DistributedDataParallel(net, device_ids=[args.local_rank],
 Train_set = Train_Loader(input_path, gt_path, crop_size)
 train_sampler = DistributedSampler(Train_set)
 dataloader_train = DataLoader(Train_set, sampler=train_sampler, batch_size=batch_size // num_gpus,
-                              num_workers=1, pin_memory=True, find_unused_parameters=False)  # find_unused_parameters 建議不要開可以debug用
+                              num_workers=1, pin_memory=True)
 
 # Model and optimizer
 optimizer = optim.Adam(net.parameters(), lr=init_lr)
@@ -115,7 +115,7 @@ for epoch in range(start_epoch, end_epoch):
 
         optimizer.zero_grad()
         output = net(input).clamp(0, 1)
-        loss = L1_Loss(output, gt)
+        loss = L1_Loss()(output, gt)
         loss.backward()
         optimizer.step()
 
