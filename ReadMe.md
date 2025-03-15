@@ -8,5 +8,15 @@ conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11
 pip install opencv-python tqdm glog scikit-image tensorboardX thop
 ```
 ## Training
-1. Download "[NH-Haze](https://drive.google.com/file/d/1iI-NqpbhXDUzct4H7EYK0hYfHwfAxUwM/view?usp=drive_link)" dataset.
-2. Unzip NH-Haze.zip and put NH-Haze into './datasets' as: </br> './datasets/NH-Haze'
+Download "[NH-Haze](https://drive.google.com/file/d/1iI-NqpbhXDUzct4H7EYK0hYfHwfAxUwM/view?usp=drive_link)" dataset.
+Unzip NH-Haze.zip and put NH-Haze into './datasets' as: </br> './datasets/NH-Haze'
+
+* Run the following command for training on single GPU
+```
+CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node=1 train.py
+```
+
+* Run the following command for training on multiple GPUs
+```
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 train.py
+```
