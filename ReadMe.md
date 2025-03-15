@@ -4,7 +4,7 @@ git clone https://github.com/pp00704831/Demo_Code.git
 cd Demo_Code
 conda create -n Demo python=3.7
 source activate Demo
-conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11.1 -c pytorch -c conda-forge
+conda install pytorch==1.13.1 torchvision==0.14.1 torchaudio==0.13.1 pytorch-cuda=11.7 -c pytorch -c nvidia
 pip install opencv-python tqdm glog scikit-image tensorboardX thop
 ```
 ## Training
