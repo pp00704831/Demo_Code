@@ -20,3 +20,10 @@ CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node=1 tra
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 train.py
 ```
+
+## Testing
+* Run the following command for testing
+```
+CUDA_VISIBLE_DEVICES=0 python test.py
+```
+Results will be saved in the file './out'
